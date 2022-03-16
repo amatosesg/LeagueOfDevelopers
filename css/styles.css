@@ -1,5 +1,10 @@
 body{
     font-family: "Fredoka", Helvetica, sans-serif;
+    background-image: url(../assets/testbg3.gif);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 img{
@@ -9,23 +14,6 @@ a{
     text-decoration: none;
     color: #212529;
 }
-.page-bg{
-    background-image: url(../assets/bgIniciarSesion.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    -webkit-filter: blur(2px);
-    -moz-filter: blur(2px);
-    -o-filter: blur(2px);
-    -ms-filter: blur(2px);
-    filter: blur(2px);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;  
-}
-
 .footer-menu__link{
     font-size: 1.2rem;
     text-decoration: none;
