@@ -2,7 +2,7 @@
 
 **AVISO IMPORTANTE:** ESTE PROYECTO TODAVÍA ESTA EN FASE DE DESARROLLO Y TODO LO INCLUIDO EN ESTE README PUEDE SUFRIR CAMBIOS EN FUTURAS VERSIONES.
 
-¡Bienvenidos a nuestro proyecto! Este proyecto esta basado en un juego de conquista jugador contra jugador donde cada uno de ellos deberá de conquistar casillas en un tablero. El ganador será el jugador que conquiste más casillas.
+¡Bienvenidos a nuestro proyecto! Este proyecto esta basado en un juego de conquista jugador contra jugador donde cada uno de ellos deberá de conquistar casillas en un tablero. El ganador será el jugador que conquiste más casillas con sus colores.
 
 # SOFTWARE 🛠️
 Para la realización del proyecto hemos usado el siguiente software: 
