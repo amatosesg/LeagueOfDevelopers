@@ -1,3 +1,4 @@
+/* Global */
 body{
     font-family: "Fredoka", Helvetica, sans-serif;  
 }
@@ -8,16 +9,30 @@ a{
     text-decoration: none;
     color: #212529;
 }
+::-webkit-scrollbar{
+    background: transparent;
+}
+/* Background for Index, Signup and Forgot-Password Responsive */
 .bg_img--primary{
-    background-image: url(../assets/primaryBG.gif);
+    /* Add Background Color for URL Error Excepcions */
+    background-image: url(../assets/primaryBG.gif), linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
     width: 100%;
     height: 100vh;
+    background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    background-attachment: fixed;
-    overflow: scroll;
+    overflow-x: hidden;
 }
+/* Background for Home Page Responsive */
+.bg_img--home{
+
+}
+/* Background for Game Page Responsive */
+.bg_img--game{
+
+}
+/* New Column Sizes for better Responsive */
 .col-3h{
     flex: 0 0 auto;
     width: 30%;
@@ -52,6 +67,7 @@ a{
         width: 30%;
     }
 }
+/* Footer */
 .footer-menu__link{
     font-size: 1.2rem;
     text-decoration: none;
