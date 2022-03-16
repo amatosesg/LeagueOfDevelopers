@@ -1,7 +1,5 @@
 body{
     font-family: "Fredoka", Helvetica, sans-serif;  
-    width: 100%;
-    height: 100vh;
 }
 img{
     max-width: 100%;
@@ -11,13 +9,14 @@ a{
     color: #212529;
 }
 .bg_img--primary{
-    background-image: url(../assets/testbg3.gif);
+    background-image: url(../assets/primaryBG.gif);
     width: 100%;
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
+    overflow: scroll;
 }
 .col-3h{
     flex: 0 0 auto;
