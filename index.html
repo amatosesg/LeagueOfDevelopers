@@ -30,14 +30,14 @@
 
                     <div class="mb-4">
                         <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" name="email" placeholder="Email">
+                        <input type="email" class="form-control" name="email" placeholder="Email" id="loginEmail" required>
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" placeholder="Password" id="loginPw" required>
                     </div>
                     <div class="mb-4 form-check">
-                        <input type="checkbox" name="connected" class="form-check-input" id="">
+                        <input type="checkbox" name="connected" class="form-check-input" id="connectedCheck">
                         <label for="connected" class="form-check-label">Mantener sesión iniciada</label>
                     </div>
 
@@ -129,5 +129,6 @@
     </div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jsquery.min.js"></script>
 </body>
 </html>
