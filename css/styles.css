@@ -10,7 +10,7 @@ a{
     color: #212529;
 }
 ::-webkit-scrollbar{
-    background: transparent;
+    width: 0;
 }
 /* Background for Index, Signup and Forgot-Password Responsive */
 .bg_img--primary{
@@ -78,6 +78,28 @@ a{
     cursor: pointer;
     color: #212529;
 }
+.footer-menu__text{
+    font-size: 1.2rem;
+    color: #212529;
+}
+/* Special MQs for Smallest Devices */
+@media (max-width: 350px) {
+    .footer-menu__link{
+        font-size: 1.1rem;
+    }
+    .footer-menu__text{
+        font-size: 1rem;
+    }
+}
+@media (max-width: 280px) {
+    .footer-menu__link{
+        font-size: 1rem;
+    }
+    .footer-menu__text{
+        font-size: 0.8rem;
+    }
+}
+
 .fw-medium{
     font-weight: 500;
 }
