@@ -11,7 +11,7 @@ Para la realización del proyecto hemos usado el siguiente software:
 - **Responsive**: Responsively.
 - **Control de Versiones**: Github.
 
-# LENGUAJE, FRAMEWORKS Y API'S
+# LENGUAJE, FRAMEWORKS Y API'S :closed_book:
 
 Los lenguajes de programación, frameworks y API's que hemos usado han sido:
 - **HTML5**:
