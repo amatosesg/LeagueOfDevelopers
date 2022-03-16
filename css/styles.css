@@ -67,6 +67,17 @@ a{
         width: 30%;
     }
 }
+/* Sign In Button Bootstrap Changes */
+.btn_primary--signIn {
+    color: #fff;
+    background-color: #547691;
+    border-color: #547691;
+  }
+  .btn_primary--signIn:hover {
+    color: #fff;
+    background-color: #131B23;
+    border-color: #131B23;
+  }
 /* Footer */
 .footer-menu__link{
     font-size: 1.2rem;

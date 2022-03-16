@@ -16,7 +16,7 @@
         <!-- HEADER -->
         <header class="row justify-content-center">
             <div class="col-auto mt-3 mb-3">
-                <img src="/assets/logoNoBG-sm.png" alt="logoLoD">
+                <a href="index.html"><img src="/assets/logoNoBG-sm.png" alt="logoLoD"></a>
             </div>
         </header>
 
@@ -38,17 +38,32 @@
                         <label for="userName" class="form-label">Nombre de Usuario</label>
                         <input type="userName" class="form-control" name="userName" placeholder="User Name">
                     </div>
-                    <!-- @TODO AVATAR PICKER FORM -->
+
+                    <!-- AVATAR PICKER FORM -->
                     <div class="mb-4">
-                        <label for="avatarPicker" class="form-check-label">Selecciona tu Avatar (BETA)</label>
-                        <br>
-                        <input type="radio" class="radio" name="optradio" id="avatar1">
-                        <img src="/assets/avatar1.png" class="rounded-circle mb-3" style="width: 100px" alt="Avatar">
-                        <input type="radio" class="radio" name="optradio" id="avatar2">
-                        <img src="/assets/avatar2.png" class="rounded-circle mb-3" style="width: 100px" alt="Avatar">
-                        <input type="radio" class="radio" name="optradio" id="avatar3">
-                        <img src="/assets/avatar3.png" class="rounded-circle mb-3" style="width: 100px" alt="Avatar">
+                        <label for="avatarPicker" class="form-check-label mb-2">Selecciona tu Avatar (BETA)</label>
+                        <div class="form-check">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-xl-3 mb-2 mb-sm-2 mb-xl-0">
+                                    <input type="radio" class="radio" name="optAvatar" id="avatar1">
+                                    <img src="/assets/avatar1.png" class="" style="width: 90px;" alt="Avatar1">
+                                </div>
+                                <div class="col-12 col-sm-6 col-xl-3 mb-2 mb-sm-0">
+                                    <input type="radio" class="radio" name="optAvatar" id="avatar2">
+                                    <img src="/assets/avatar2.png" class="" style="width: 90px;" alt="Avatar2">
+                                </div>
+                                <div class="col-12 col-sm-6 col-xl-3 mb-2 mb-sm-2 mb-xl-0">
+                                    <input type="radio" class="radio" name="optAvatar" id="avatar3">
+                                    <img src="/assets/avatar3.png" class="" style="width: 90px;" alt="Avatar3">
+                                </div>
+                                <div class="col-12 col-sm-6 col-xl-3 mb-2 mb-sm-0">
+                                    <input type="radio" class="radio" name="optAvatar" id="avatar4">
+                                    <img src="/assets/avatar4.png" class="" style="width: 90px;" alt="Avatar4">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="mb-4 form-check">
                         <input type="checkbox" name="privacyPolicy" class="form-check-input">
                         <label for="privacyPolicy" class="form-check-label">Acepto los <span class="fw-bold">Términos y Condiciones</span> y la 
@@ -66,21 +81,22 @@
                 <div class="container w-100 mt-3">
                     <div class="row">
                         <div class="col">
-                            <h5 class="fw-medium text-center text-uppercase">También puedes registrarte con</h5>
+                            <h5 class="fw-medium text-center text-uppercase d-none d-sm-block">También puedes registrarte con</h5>
+                            <h5 class="fw-medium text-center text-uppercase d-block d-sm-none">Regístrate con</h5>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-12 col-sm">
                             <button class="btn btn-outline-primary w-100 my-1">
                                 <img src="assets/logoFB.png" width="30" alt="">
                             </button>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-sm">
                             <button class="btn btn-outline-danger w-100 my-1">
                                 <img src="assets/logoGoogle.png" width="30" alt="">
                             </button>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-sm">
                             <button class="btn btn-outline-dark w-100 my-1">
                                 <img src="assets/logoApple.png" width="30" alt="">
                             </button>
