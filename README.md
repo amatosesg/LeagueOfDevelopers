@@ -11,7 +11,7 @@ Para la realización del proyecto hemos usado el siguiente software:
 - **Responsive**: Responsively.
 - **Control de Versiones**: Github.
 
-# LENGUAJE, FRAMEWORKS Y API'S
+# LENGUAJE, FRAMEWORKS Y API'S 🖋
 
 Los lenguajes de programación, frameworks y API's que hemos usado han sido:
 - **HTML5**:
@@ -29,7 +29,7 @@ Hemos estructurado el proyecto de la siguiente manera:
 
 **WORK IN PROGRESS**
 
-# AUTORES ✒️
+# AUTORES 🖋️
 
 - Adrià Matoses - [amatosesg@uoc.edu](mailto:amatosesg@uoc.edu)
 - Dylan Núñez - [dnunezgar@uoc.edu](mailto:dnunezgar@uoc.edu)
