@@ -1,6 +1,14 @@
 /* Global */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
     font-family: "Fredoka", Helvetica, sans-serif;  
+    min-height: 100%;
+    min-width: 100%;
+    overflow-x: hidden;
 }
 img{
     max-width: 100%;
@@ -26,13 +34,24 @@ a{
 }
 /* Background for Home Page Responsive */
 .bg_img--home{
-
+    background-color: #131B23;
 }
 /* Background for Game Page Responsive */
 .bg_img--game{
 
 }
-/* New Column Sizes for better Responsive */
+/* Special Padding for Dragable Boxes */
+.waiting_box--player{
+    padding: 5.2rem 6.2rem 5.2rem 6.2rem !important;
+}
+.waiting_box--room{
+    padding: 12rem 3rem 12rem 3rem !important;
+}
+/* New Column Sizes for better Responsive and Gap*/
+.col-2h {
+    flex: 0 0 auto;
+    width: 24.7%;
+}
 .col-3h{
     flex: 0 0 auto;
     width: 30%;
