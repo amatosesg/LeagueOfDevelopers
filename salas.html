@@ -1,0 +1,104 @@
+<!DOCTYPE <html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Juego conquistas</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />  
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+
+<body>
+
+    <div class="tituloSalas">
+        <h4>JUGADORES EN ESPERA</h4>
+        <ul id="playerList" class="source-list">
+        </ul>
+    </div>
+    <div id="sala1" class="salas">
+        <h4>Sala 1</h4>
+    </div>
+
+    <div id="sala2" class="salas">
+        <h4>Sala 2</h4>
+    </div>
+
+    <div id="sala3" class="salas">
+        <h4>Sala 3</h4>
+    </div>
+
+    <div id="sala4" class="salas">
+        <h4>Sala 4</h4>
+    </div>
+
+
+
+    <!--FICHEROS JS-->        
+    <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- script que carga en la vista los jugadores logueados-->
+    <script>
+
+        $(document).ready(function () {
+            cargarJugadoresEspera();
+        });
+
+        function cargarJugadoresEspera() {
+
+
+
+
+            $.get("http://localhost:3000/api/jugadores-en-espera", function (res) {
+                console.log(res);
+
+                var result = "";
+                for (var i = 0; i < res.length; i++) {
+                    result += "<li class='players'>" + res[i].Name +  "<img class='arrastrar' src='img/" + res[i].Avatar + "' /></li>";
+                }
+
+                $("#playerList").html(result)
+
+            })
+        }
+    </script>
+
+    <!--Drag and Drop-->
+    <script>
+        var objectDraged;
+        
+        document.addEventListener('dragstart', e => {
+            if (event.target.className === "arrastrar"){
+                var parent = event.target.parentElement;
+
+                objectDraged = parent;
+            }
+        });
+      
+        const contenedor = document.querySelectorAll('.salas');
+        for(var j = 0; j < contenedor.length; j++){
+            const cont = contenedor[j];
+
+
+        cont.addEventListener('dragenter', e => {
+            // console.log('Drag Enter');
+        });
+
+        cont.addEventListener('dragleave', e => {
+            // console.log('Drag Leave');
+        });
+        cont.addEventListener('dragover', e => {
+            e.preventDefault();
+            // console.log('Drag Over');
+        });
+
+        cont.addEventListener('drop', e => {
+            console.log(e);
+
+            cont.appendChild(objectDraged);
+        });
+    }
+    </script>
+</body>
+
+</html>
