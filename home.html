@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/favicon-32x32.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preload" href="/assets/homeBG.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>League of Developers</title>
@@ -41,7 +41,8 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-10 text-center rounded waiting-box__player">
-                            <p class="m-0">DRAGABLE ZONE FOR DROP</p>
+                            <ul id="playerList" class="m-0">
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -52,15 +53,14 @@
                 <div class="col-2h pb-3 rounded shadow bg-zone__home">
                     <div class="row p-2 align-items-center">
                         <div class="col-8 p-2 text-center">
-                            <p class="m-0">NOMBRE DE SALA</p>
+                            <p class="m-0">SALA VALKYRIA</p>
                         </div>
                         <div class="col-4 text-end">
                             <P class="m-0">0/2 <img src="/assets/playerIcon.png" width="30" alt="playerIcon"></P>
                         </div>
                     </div>
                     <div class="row justify-content-center m-1">
-                        <div class="col-12 text-center waiting-box__room">
-                            <p class="m-0">DRAGABLE ZONE FOR DROP</p>
+                        <div class="col-12 text-center waiting-box__room" id="sala1">
                         </div>
                     </div>
                 </div>
@@ -68,15 +68,14 @@
                 <div class="col-2h rounded shadow bg-zone__home">
                     <div class="row p-2 align-items-center">
                         <div class="col-8 p-2 text-center">
-                            <p class="m-0">NOMBRE DE SALA</p>
+                            <p class="m-0">SALA THOR</p>
                         </div>
                         <div class="col-4 text-end">
                             <P class="m-0">0/2 <img src="/assets/playerIcon.png" width="30" alt="playerIcon"></P>
                         </div>
                     </div>
                     <div class="row justify-content-center m-1">
-                        <div class="col-12 text-center waiting-box__room">
-                            <p class="m-0">DRAGABLE ZONE FOR DROP</p>
+                        <div class="col-12 text-center waiting-box__room" id="sala2">
                         </div>
                     </div>
                 </div>
@@ -84,15 +83,14 @@
                 <div class="col-2h rounded shadow bg-zone__home">
                     <div class="row p-2 align-items-center">
                         <div class="col-8 p-2 text-center">
-                            <p class="m-0">NOMBRE DE SALA</p>
+                            <p class="m-0">SALA LOKI</p>
                         </div>
                         <div class="col-4 text-end">
                             <P class="m-0">0/2 <img src="/assets/playerIcon.png" width="30" alt="playerIcon"></P>
                         </div>
                     </div>
                     <div class="row justify-content-center m-1">
-                        <div class="col-12 text-center waiting-box__room">
-                            <p class="m-0">DRAGABLE ZONE FOR DROP</p>
+                        <div class="col-12 text-center waiting-box__room" id="sala3">
                         </div>
                     </div>
                 </div>
@@ -100,22 +98,21 @@
                 <div class="col-2h rounded shadow bg-zone__home">
                     <div class="row p-2 align-items-center">
                         <div class="col-8 p-2 text-center">
-                            <p class="m-0">NOMBRE DE SALA</p>
+                            <p class="m-0">SALA FREYA</p>
                         </div>
                         <div class="col-4 text-end">
                             <P class="m-0">0/2 <img src="/assets/playerIcon.png" width="30" alt="playerIcon"></P>
                         </div>
                     </div>
                     <div class="row justify-content-center m-1">
-                        <div class="col-12 text-center waiting-box__room">
-                            <p class="m-0">DRAGABLE ZONE FOR DROP</p>
+                        <div class="col-12 text-center waiting-box__room" id="sala4">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- FOOTER -->
-        <footer class="row p-2 pb-0 m-0 shadow footer-home fixed-bottom">
+        <footer class="row p-2 pb-0 m-0 shadow footer-home">
             <div class="col">
                 <div class="row justify-content-center p-0 m-0">
                     <div class="col-auto">
@@ -140,8 +137,10 @@
         </footer>
     </div>
 
-    <script src="js/scripts.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jsquery.min.js"></script>
+
+    <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/cargaDatosJugadores.js"></script>
+    <script type="text/javascript" src="/js/dragAndDrop.js"></script>
 </body>
 </html>

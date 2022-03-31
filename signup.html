@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/favicon-32x32.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,18 +26,18 @@
                 <h2 class="fw-medium text-center pt-4 mb-4 text-uppercase">Registro</h2>
 
                 <!-- REGISTER FORM -->
-                <form name="registerForm" action="#" class="">
+                <form action="http://localhost:3000/api/registrar-usuario" method="POST" id="formulario">
                     <div class="mb-4">
-                        <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" name="email" placeholder="Email" id="registerEmail" required>
+                        <label for="inputEmail4" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" placeholder="Email" id="inputEmail" required>
                     </div>
                     <div class="mb-4">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password" id="registerPw" autocomplete required>
+                        <label for="inputPassword4" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" placeholder="Password" id="inputPassword" autocomplete required>
                     </div>
                     <div class="mb-4">
-                        <label for="userName" class="form-label">Nombre de Usuario</label>
-                        <input type="userName" class="form-control" name="userName" placeholder="User Name" id="registerUser" required>
+                        <label for="inputName" class="form-label">Nombre de Usuario</label>
+                        <input type="text" class="form-control" placeholder="User Name" id="inputName" required>
                     </div>
 
                     <!-- AVATAR PICKER FORM -->
@@ -46,37 +46,38 @@
                         <div class="form-check">
                             <div class="row d-flex">
                                 <div class="col-12 col-sm-6 col-xl-3 mb-2 mb-sm-2 mb-xl-0 text-xl-center">
-                                    <input type="radio" class="radio" name="optAvatar" id="avatar1" value="avatar1" checked>
+                                    <input type="radio" class="radio" name="avatarId" id="inputAvatar" value="avatar1.png" checked>
                                     <img src="/assets/avatar1.png" class="" style="width: 90px;" alt="Avatar1">
                                 </div>
                                 <div class="col-12 col-sm-6 col-xl-3 mb-2 mb-sm-0 text-xl-center">
-                                    <input type="radio" class="radio" name="optAvatar" id="avatar2" value="avatar2">
+                                    <input type="radio" class="radio" name="avatarId" id="avatar2" value="avatar2.png">
                                     <img src="/assets/avatar2.png" class="" style="width: 90px;" alt="Avatar2">
                                 </div>
                                 <div class="col-12 col-sm-6 col-xl-3 mb-2 mb-sm-2 mb-xl-0 text-xl-center">
-                                    <input type="radio" class="radio" name="optAvatar" id="avatar3" value="avatar3">
+                                    <input type="radio" class="radio" name="avatarId" id="avatar3" value="avatar3.png">
                                     <img src="/assets/avatar3.png" class="" style="width: 90px;" alt="Avatar3">
                                 </div>
                                 <div class="col-12 col-sm-6 col-xl-3 mb-2 mb-sm-0 text-xl-center">
-                                    <input type="radio" class="radio" name="optAvatar" id="avatar4" value="avatar4">
+                                    <input type="radio" class="radio" name="avatarId" id="avatar4" value="avatar4.png">
                                     <img src="/assets/avatar4.png" class="" style="width: 90px;" alt="Avatar4">
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- TODO PRIVACYPOLICY CHECKBOX -->
                     <div class="mb-4 form-check">
                         <input type="checkbox" name="privacyPolicy" class="form-check-input">
                         <label for="privacyPolicy" class="form-check-label">Acepto los <span class="fw-bold">Términos y Condiciones</span> y la 
                             <span class="fw-bold">Política de Privacidad de Datos</span>.</label>
                     </div>
                     <div class="d-grid justify-content-center">
-                        <button type="submit" class="btn btn-primary__lod ps-5 pe-5">Crear Cuenta</button>
-                    </div>
-                    <div class="mt-3 text-center">
-                        <span><a href="index.html">¿Ya tienes una cuenta? Inicia Sesión</a></span>
+                        <button type="submit" id="botonForm" class="btn btn-primary__lod ps-5 pe-5">Crear Cuenta</button>
                     </div>
                 </form>
+                <div class="mt-3 text-center">
+                  <span><a href="index.html">¿Ya tienes una cuenta? Inicia Sesión</a></span>
+                </div>
 
                 <!-- LOGIN WITH RRSS -->
                 <div class="container w-100 mt-3">
@@ -133,8 +134,9 @@
         </footer>
     </div>
 
-    <script src="js/scripts.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/webstorage.js"></script>  
+    <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="clases/jugador.js"></script>
 </body>
 </html>
