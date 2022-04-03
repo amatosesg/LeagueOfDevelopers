@@ -1,0 +1,219 @@
+/* Global */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Fredoka", Helvetica, sans-serif;  
+    min-height: 100%;
+    min-width: 100%;
+}
+img{
+    max-width: 100%;
+}
+a{
+    text-decoration: none;
+    color: #212529;
+}
+a:hover{
+    color: #7094A2; 
+}
+::-webkit-scrollbar{
+    width: 0;
+}
+/* Options for VH */
+.vh-87{
+    height: 87vh !important;
+}
+.vh-82{
+    height: 82vh !important;
+}
+.vh-61{
+    height: 60vh !important;
+}
+/* Box Colors */
+.box-blue, .box-red{
+    width: 20px;
+    height: 20px;
+    padding: 0;
+}
+.box-blue{
+    background-color: #5c94bd;
+    border: 1px solid #afcde3;
+}
+.box-red{
+    background-color: #d46464;
+    border: 1px solid #e9b3b3;
+}
+/* Background for Index, Signup and Forgot-Password Responsive */
+.bg-img__primary{
+    /* Add Background Color for URL Error Exceptions */
+    background-image: url(../assets/primaryBG.gif), linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    width: 100%;
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow-x: hidden;
+}
+/* Background for Home Page Responsive */
+.bg-img__home{
+    /* Add Background Color for URL Error Exceptions */
+    background-image: url(../assets/homeBG.png), linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    width: 100%;
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow-x: hidden;
+}
+.bg-zone__home{
+    background-color: #1B262C;
+    opacity: 0.82;
+    color: white;
+}
+/* Background for Game Page Responsive */
+.bg-img__game{
+    /* Add Background Color for URL Error Exceptions */
+    background-image: url(../assets/homeBG.png), linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    width: 100%;
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow-x: hidden;
+}
+.bg-zone__game{
+    background-color: #1B262C;
+    opacity: 0.98;
+    color: white;
+}
+.bg-game__game{
+    background-color: #111820;
+    opacity: 1;
+    color: white;
+}
+/* Header for Home Page */
+.header-home{
+    height: 59px;
+    background-color: #1B262C;
+    opacity: 0.65;
+    color: white;
+}
+.header-home__link{
+    color: white;
+}
+.a__home{
+    color: white;
+}
+/* Special Padding for Dragable/Game Boxes */
+.waiting-box__player{
+    padding: 5.2rem 6.2rem 5.2rem 6.2rem !important;
+    border: 1px solid white;
+}
+.waiting-box__room{
+    padding: 12rem 0rem 12rem 0rem !important;
+    border: 1px solid white;
+}
+/* New Column Sizes for better Responsive and Gap*/
+.col-2h {
+    flex: 0 0 auto;
+    width: 24.7%;
+}
+.col-3h{
+    flex: 0 0 auto;
+    width: 30%;
+}
+@media (min-width: 576px) {
+    .col-sm-3h{
+        flex: 0 0 auto;
+        width: 30%;
+    }
+}
+@media (min-width: 768px) {
+    .col-md-3h{
+        flex: 0 0 auto;
+        width: 30%;
+    }
+}
+@media (min-width: 992px) {
+    .col-lg-3h{
+        flex: 0 0 auto;
+        width: 30%;
+    }
+}
+@media (min-width: 1200px) {
+    .col-xl-3h{
+        flex: 0 0 auto;
+        width: 30%;
+    }
+}
+@media (min-width: 1400px) {
+    .col-xxl-3h{
+        flex: 0 0 auto;
+        width: 30%;
+    }
+}
+/* Sign In Button Bootstrap Changes */
+.btn-primary__lod {
+    color: #fff;
+    background-color: #547691;
+    border-color: #547691;
+  }
+  .btn-primary__lod:hover {
+    color: #fff;
+    background-color: #131B23;
+    border-color: #131B23;
+  }
+/* Footer */
+.footer-menu__link{
+    font-size: 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 110%;
+    cursor: pointer;
+    color: #212529;
+}
+.footer-menu__text{
+    font-size: 1.2rem;
+    color: #212529;
+}
+/* Footer for Home Page*/
+.footer-home{
+    background-color: #1B262C;
+    opacity: 0.65;
+    color: white;
+}
+.footer-home__link{
+    color: white;
+}
+/* Special MQs for Smallest Devices */
+@media (max-width: 350px) {
+    .footer-menu__link{
+        font-size: 1.1rem;
+    }
+    .footer-menu__text{
+        font-size: 1rem;
+    }
+}
+@media (max-width: 280px) {
+    .footer-menu__link{
+        font-size: 1rem;
+    }
+    .footer-menu__text{
+        font-size: 0.8rem;
+    }
+}
+
+.fw-medium{
+    font-weight: 500;
+}
+.bg-white-opal{
+    background-color: whitesmoke;
+}

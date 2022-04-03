@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preload" href="assets/primaryBG.gif" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sala de Juego</title>
+</head>
+<body>
+    <div class="container-fluid bg-img__home p-0 m-0">
+        <!-- HEADER -->
+        <header class="row  m-0 d-flex shadow w-100 align-items-center header-home">
+            <div class="col-auto flex-grow-1">
+                <a href="home.html"><img src="assets/logoOnlyLetters.png"  width="300" alt="logoLoD"></a>
+            </div>
+            <div class="col-auto me-4">
+                <P class="m-0">INICIO</P>
+            </div>
+            <div class="col-auto me-4">
+                <P class="m-0">CÓMO JUGAR</P>
+            </div>
+            <div class="col-auto">
+                <P class="m-0"><img src="assets/playerIcon.png" width="30" alt="playerIcon"> PROFILE - LOGOUT</P>
+            </div>
+        </header>
+
+        <div class="row vh-87">
+            <div class="col-10 rounded shadow p-3 pe-4 ps-4 mt-3 me-1 ms-3 bg-zone__game">
+                <div class="row">
+                    <div class="col-12 rounded shadow w-100 vh-82 m-0 p-0 bg-game__game text-center">
+                        <h3 class="m-0 mt-5">GAME MAP</h3>
+                    </div>
+                </div>
+            </div>
+            <aside class="col rounded shadow p-4 pt-3 pb-3 me-3 mt-3 bg-zone__game">
+                <div class="row">
+                    <div class="col-12 rounded shadow p-4 mb-3 text-center bg-game__game">
+                        <p class="m-0">Jugadores en la Sala</p>
+                        <div class="row rounded shadow align-items-center mt-3 bg-info bg-opacity-50">
+                            <div class="col-2 p-0 ms-2 mt-1 mb-1">
+                                <img src="assets/avatar1.png" width="40px" alt="playerAvatar">
+                            </div>
+                            <div class="col-8 p-0 m-0">
+                                <p class="m-0">PlayerName 1</p>
+                            </div>
+                            <div class="col-1 p-0 m-0 box-blue text-center"></div>
+                        </div>
+                        <div class="row align-items-center mt-3 rounded shadow bg-danger bg-opacity-50">
+                            <div class="col-2 p-0 ms-2 mt-1 mb-1">
+                                <img src="assets/avatar2.png" width="40px" alt="playerAvatar">
+                            </div>
+                            <div class="col-8 p-0 m-0">
+                                <p class="m-0">PlayerName 2</p>
+                            </div>
+                            <div class="col-1 p-0 m-0 box-red text-center"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 rounded shadow p-3 text-center vh-61 bg-game__game">
+                        <p>Game Room Chat</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+
+
+
+        <!-- FOOTER -->
+        <footer class="row p-2 pb-0 m-0 shadow footer-home fixed-bottom">
+            <div class="col">
+                <div class="row justify-content-center p-0 m-0">
+                    <div class="col-auto">
+                        <a class="footer-home__link" href="#">Asistencia</a>
+                    </div>
+                    <div class="col-auto">
+                        <a class="footer-home__link" href="#">Aviso de Privacidad</a>
+                    </div>
+                    <div class="col-auto">
+                        <a class="footer-home__link" href="#">Términos de Servicio</a>
+                    </div>
+                    <div class="col-auto">
+                        <a class="footer-home__link" href="#">FAQ</a>
+                    </div>
+                </div>
+                <div class="row justify-content-center pt-1 m-0">
+                    <div class="col text-center">
+                        <p class="m-0">© 2022 JS_Developers. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/scripts.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/jsquery.min.js"></script>
+</body>
+</html>
