@@ -107,6 +107,9 @@ a:hover{
 .header-home__link{
     color: white;
 }
+.a__home{
+    color: white;
+}
 /* Special Padding for Dragable/Game Boxes */
 .waiting-box__player{
     padding: 5.2rem 6.2rem 5.2rem 6.2rem !important;

@@ -11,7 +11,7 @@ $("#userLogin").submit(function (e) {
         if(response == ''){
             alert("El email");
         }else {
-            
+        sessionStorage.setItem("session", JSON.stringify(response));
         window.location.href= 'home.html';
         }      
         
