@@ -1,0 +1,84 @@
+<!DOCTYPE <html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Juego conquistas</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="icon" type="image/x-icon" href="img/fondo.png" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+
+<body>
+    
+
+    <h1>WORLD CONQUEST</h1>
+
+    <form action="http://localhost:3000/api/registrar-usuario" method="POST" id="formulario" class="row g-3">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail">
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Password</label>
+          <input type="password" class="form-control" id="inputPassword">
+        </div>
+        <div class="col-6">
+          <label for="inputName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="inputName">
+        </div>
+        <div class="col-6">
+          <label for="inputSurname" class="form-label">Surname</label>
+          <input type="text" class="form-control" id="inputSurname">
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">City</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">State</label>
+          <input type="text" class="form-control" id="inputState">          
+        </div>
+        <div class="form-check">
+          <div class="layout-box">
+              <div class="row">
+                  
+                  </div>
+                  <div class="col-md-2 col-sm-2"><img src="img/Avatar1.png" class="layout-image">
+                      <div class="radio radio-adjust">
+                          <label><input type="radio" id="inputAvatar" name="avatarId" value="Avatar1.png"></label>
+                      </div>
+                  </div>
+                  <div class="col-md-2 col-sm-2"><img src="img/Avatar2.png" class="layout-image">
+                      <div class="radio radio-adjust">
+                          <label><input type="radio" id="inputAvatar" name="avatarId" value="Avatar2.png"></label>
+                      </div>
+                  </div>
+                  <div class="col-md-2 col-sm-2"><img src="img/Avatar3.png" class="layout-image">
+                      <div class="radio radio-adjust">
+                          <label><input type="radio" id="inputAvatar" name="avatarId" value="Avatar3.png"></label>
+                      </div>
+                  </div>
+                  <div class="col-md-2 col-sm-2"><img src="img/Avatar4.png" class="layout-image">
+                      <div class="radio radio-adjust">
+                          <label><input type="radio" id="inputAvatar" name="avatarId" value="Avatar4.png"></label>
+                      </div>
+                  </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" id="botonForm" class="btn btn-primary">Sign in</button>
+          
+        </div>
+      </form>
+    
+    <script src="js/socket.io.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="client.js"></script>
+    <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="clases/jugador.js"></script>
+   
+</body>
+
+</html>

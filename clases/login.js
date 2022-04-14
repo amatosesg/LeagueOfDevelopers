@@ -5,16 +5,16 @@ $("#userLogin").submit(function (e) {
         email: $('#email').val(),
         password: $('#password').val()
     };
-    
+
     $.post($(this).attr("action"), login, function (response) {
-        console.log(response);
-        if(response == ''){
-            alert("El email");
-        }else {
-        sessionStorage.setItem("session", JSON.stringify(response));
-        window.location.href= 'home.html';
-        }      
-        
+        if (response == null) {
+            alert("Error de login");
+        } else {
+            sessionStorage.setItem("p", JSON.stringify(response));
+            window.location.href = 'salas.html';
+        }
+
     });
+
     return false;
 });
