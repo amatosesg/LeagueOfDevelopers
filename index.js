@@ -1,14 +1,19 @@
-const { addJugador, getJugadores, getSalas, login, jugadorEspera } = require("./models/AppData");
-
+const AppData = require("./models/AppData");
+const { addJugador, getJugadores, getSalas, login, jugadorEspera, jugadorEnSala, asignarJugadorASala, getJugadorPorEmail } = require("./models/AppData");
+//
 var express = require("express"),
   app = express(),
   bodyParser = require("body-parser");
+const socketio = require('socket.io');
+const randomColor = require('randomcolor');
+const partida = require('./public/partida');
+//Sockets
+app.use(express.static(`${__dirname}/../public`));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(methodOverride());
 
-//const Jugador = require('models/jugador');
+
 
 
 //Ruta principal
@@ -38,9 +43,6 @@ router.post("/user/login", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
-  console.log(email);
-  console.log(password);
-
   var result = login(email, password);
 
   res.send(result);
@@ -50,35 +52,37 @@ router.post("/user/login", function (req, res) {
 router.get("/api/dame-usuarios", function (req, res) {
   const result = getJugadores();
 
-  console.log(result);
-
   res.send(result);
 });
 
 router.post("/api/registrar-usuario", function (req, res) {
   let jugador = req.body;
 
-  console.log(jugador);
-
   addJugador(jugador);
-
-  console.log(getJugadores());
 
   res.send("jugador registrado");
 });
 
 // Jugadores en espera
-router.get("/api/jugadores-en-espera", function (req, res){
- var playerExist =jugadorEspera();
+router.get("/api/jugadores-en-espera", function (req, res) {
+  var playerExist = jugadorEspera();
 
- res.send(playerExist);
+  res.send(playerExist);
+})
+
+router.post("/api/jugador-en-sala", function (req, res) {
+  let IdSalas = req.body.IdSalas;
+  let email = req.body.email;
+  console.log(IdSalas);
+  console.log(email);
+  jugadorEnSala(IdSalas, email);
+  const salas = getSalas();
+  res.send(true);
 })
 
 //Rutas salas
 router.get("/api/salas", function (req, res) {
   const result = getSalas();
-
-  console.log(result);
 
   res.send(result);
 });
@@ -92,17 +96,80 @@ router.get('/sala/salaId', async (req, res) => {
 
 });
 
-router.post("/api/añadirJugador-sala", function (req, res) {
-  let(salaId, jugador) = req.body;
+router.post("/api/anadirJugador-sala", function (req, res) {
+  let salaId = req.body.salaId;
+  let jugador = req.body.jugador;
   console.log(salaId, jugador);
-  asignarJugadorASala(salaId, jugador);
+  let sala = asignarJugadorASala(salaId, jugador);
 
-  console.log(getisPlayerInSala());
-  res.send("jugador en sala");
+  console.log(sala);
+  res.send(sala);
 });
 
+//SOCKET
 app.use(router);
+app.set("port", 3000);
+var server = require('http').createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+const { clear, getBoard, makeTurn, ganar, celdaContigua, primeraCelda, celdaOcupada } = partida(5);
 
-app.listen(3000, function () {
+//Metodo responsable de las conexiones de los clientes
+io.on('connection', function (socket) {
+  console.log("El cliente se ha conectado");
+  const color = randomColor();
+  socket.emit('board', getBoard());
+
+  socket.on('turn', ({ x, y, email }) => {
+    let pintarPrimera = primeraCelda(color);
+    let jugador = getJugadorPorEmail(email);
+
+    //io.emit('turn');
+    if (pintarPrimera) {
+      makeTurn(x, y, color)
+
+      console.log(x);
+      console.log(y);
+      console.log(color);
+
+      io.emit('turn', { x, y, color });
+    } else {
+
+      let ocupada = celdaOcupada(x, y);
+      if (!ocupada) {
+
+        let celda = celdaContigua(x, y, color);
+
+        if (celda) {
+          makeTurn(x, y, color)
+          io.emit('turn', { x, y, color });
+        }
+      }
+    }
+
+    let resultado = ganar();
+
+    if (resultado.acabado) {
+      io.emit('message', 'Ha ganado el jugador:' + jugador.Name + " " + jugador.Surname);
+      io.emit('message', 'Nueva ronda');
+
+      //io.emit('board');
+    }
+
+  });
+});
+
+
+
+server.listen(3000, function () {
   console.log("Node server running on http://localhost:3000");
 });
+
+
+
+

@@ -1,0 +1,182 @@
+<!DOCTYPE <html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Juego conquistas</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="preload" href="public/img/homeBG.png" as="image">
+</head>
+
+<body>
+
+    <div class="container-fluid bg-img__home p-0 m-0">
+        <header class="row justify-content-center">
+            <div class="col-auto mt-3 mb-3">
+                <a href="salas.html"><img src="../public/img/logoNoBG.png" alt="logoLoD"></a>
+            </div>
+        </header>
+    <div class="tituloSalas">
+        <h4>JUGADORES EN ESPERA</h4>
+        <ul id="playerList" class="source-list">
+        </ul>
+    </div>
+    <div id="salas">
+
+    </div>
+    
+    <!-- <div id="sala1" class="salas">
+        <h4>Sala 1</h4>       
+        <button type="button" class="btn btn-primary" id="comenzar">Comenzar</button>
+    </div>
+
+  <div id="sala2" class="salas">
+        <h4>Sala 2</h4>
+        <button type="button" class="btn btn-primary" id="comenzar">Comenzar</button>
+    </div>
+    
+
+     <div id="sala3" class="salas">
+        <h4>Sala 3</h4>
+        <button type="button" class="btn btn-primary" id="comenzar">Comenzar</button>
+    </div>
+
+    <div id="sala4" class="salas">
+        <h4>Sala 4</h4>
+        <button type="button" class="btn btn-primary" id="comenzar">Comenzar</button>
+    </div> -->
+
+
+
+    <!--FICHEROS JS-->
+    <script src="js/socket.io.min.js"></script>
+    <script type="text/javascript" src="client.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- script que carga en la vista los jugadores logueados-->
+    <script>
+
+        var objectDraged;
+
+        $(document).ready(function () {
+            cargarJugadoresEspera();
+            cargarSalas();
+        });
+
+        function cargarJugadoresEspera() {
+            $.get("http://localhost:3000/api/jugadores-en-espera", function (res) {
+                console.log(res);
+
+                var result = "";
+                for (var i = 0; i < res.length; i++) {
+                    result += "<li id='" + res[i].Email + "' class='players'>" + res[i].Name + "<img class='arrastrar' src='img/" + res[i].Avatar + "' /></li>";
+                }
+
+                $("#playerList").html(result)
+
+            })
+        }
+
+        function cargarSalas() {
+            $.get("http://localhost:3000/api/salas", function (response) {
+
+                let pintarSalas = "";
+                for (var j = 0; j < response.length; j++) {
+                    const salas = response[j];
+                    pintarSalas += "<div id='" + salas.id + "' class='salas'>";
+                    pintarSalas += "<h1>" + salas.id + "</h1>";
+                    pintarSalas += "<button type='button' onClick='salas_tablero(\"" + salas.id + "\")' class='btn btn-primary' id='comenzar'>Comenzar</button>";
+                    pintarSalas += "</div>";
+
+                }
+
+                $("#salas").html(pintarSalas)
+
+                cargarEventosSalas();
+                buttonCheck();
+            });
+        }
+
+        function salas_tablero(salas) {
+
+            window.location.href = 'juego.html?id_sala=' + salas;
+
+        }
+
+        function cargarEventosSalas() {
+            document.addEventListener('dragstart', e => {
+                if (event.target.className === "arrastrar") {
+                    var parent = event.target.parentElement;
+
+                    objectDraged = parent;
+                }
+            });
+
+            var contenedor = document.querySelectorAll('.salas');
+            for (var j = 0; j < contenedor.length; j++) {
+                const cont = contenedor[j];
+
+                cont.addEventListener('dragenter', e => {
+                    // console.log('Drag Enter');
+                });
+
+                cont.addEventListener('dragleave', e => {
+                    // console.log('Drag Leave');
+                });
+                cont.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    // console.log('Drag Over');
+                });
+
+                cont.addEventListener('drop', e => {
+                    cont.appendChild(objectDraged);
+
+                    var salaId = cont.id;
+                    var jugadorId = objectDraged.id;
+                    
+                    cargarJugadorEnSala(salaId, jugadorId);
+
+                    buttonCheck();
+
+                });
+
+                /*     document.getElementById('comenzar').addEventListener('click', function(event) {
+                 window.location.href='juego.html?=';
+                     }*/
+            }
+        }
+
+        function cargarJugadorEnSala(salaId, jugadorId) {
+            $.post("http://localhost:3000/api/anadirJugador-sala", {
+                salaId: salaId,
+                jugador: jugadorId
+            }, function (response) {
+
+            });
+        }
+
+        function buttonCheck(){
+            let salas = document.querySelector("#salas");
+            for(let i = 0; i < salas.children.length; i++){
+                let currSala = salas.children[i];
+                let button = currSala.children[1];
+                
+                let numOfUsers = 0;
+                for(let j = 0; j < currSala.children.length; j++){
+                    if(currSala.children[j].tagName === "LI"){
+                        numOfUsers++;
+                    }
+                }
+                if(numOfUsers === 2) button.disabled = false;
+                else button.disabled = true;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

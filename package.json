@@ -1,19 +1,21 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "League of Developers. Conquest Game.",
+  "description": "proyecto9 nodeJS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "JS_Developers",
+  "author": "Jose",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.2",
     "connect-multiparty": "^2.2.0",
     "express": "^4.17.3",
-    "mongoose": "^6.2.4"
+    "mongoose": "^6.2.4",
+    "randomcolor": "^0.6.2",
+    "socket.io": "^4.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

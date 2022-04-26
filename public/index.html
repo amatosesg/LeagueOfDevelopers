@@ -1,0 +1,56 @@
+<!DOCTYPE <html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Juego conquistas</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+  <link rel="icon" type="image/x-icon" href="img/fondo.png" />
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <link rel="preload" href="public/img/primaryBG.gif" as="image">
+
+
+</head>
+
+
+
+<body>
+
+  <div class="bg-img__primary container-fluid">
+  <!-- HEADER -->
+  <header class="row justify-content-center">
+    <div class="col-auto mt-3 mb-3">
+        <a href="index.html"><img src="../public/img/logoNoBG.png" alt="logoLoD"></a>
+    </div>
+</header>
+
+  
+
+
+  <form action="http://localhost:3000/user/login" method="POST" id="userLogin">
+    <div class="mb-3">
+      <label for="inputEmail" class="form-label">Email</label>
+      <input type="text" id="email" name="email" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="inputPassword" class="form-label">Password</label>
+      <input type="password" id="password" name="password" class="form-control">
+      <button type="submit" id="button" class="btn btn-primary btn-lg">Sign in</button>
+      <li>
+        <a href="sign_up.html">Sign up</a>
+      </li>
+  </form>
+  
+
+</div>
+
+  
+  <script src="js/socket.io.min.js"></script>
+  <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="clases/login.js"></script>
+  <script type="text/javascript" src="clases/main.js"></script>
+  <script type="text/javascript" src="client.js"></script>
+</body>
+
+</html>

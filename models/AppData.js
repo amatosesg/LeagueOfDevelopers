@@ -1,38 +1,57 @@
+
+const randomColor = require('randomcolor');
+
 class AppData {
 
-    static jugadores = [];
+    static jugadores = [];   
+    
 
     static salas = [
         {
-            id: "sala1",
-            players: []             
-            
-        },
-        {
-            id: "sala2",
+            id: "Sala 1",
             players: []
 
         },
         {
-            id: "sala3",
+            id: "Sala 2",
+            players: []
+
+        },
+        {
+            id: "Sala 3",
             players: []
 
 
-        },
+        }/*,
         {
             id: "sala4",
             players: []
-        }
+        }*/
     ];
 
     static jugadoresConectados = []
 
+};
+
+function findSalaById(id) {
+    return AppData.salas.find((sala) => {
+        return (sala.id === id);
+    })
+}
+function isPlayerInSala(salas, jugador) {
+    var result = salas.players.find((p) => {
+        return (p.Email === jugador.Email);
+    });
+    return result;
 }
 
 module.exports = {
     //funciones jugador
     getJugadores: function getJugadores() {
         return AppData.jugadores;
+    },
+    getJugadorPorEmail: function getJugadorPorEmail(email) {
+        return AppData.jugadores.find(x => x.Email === email);
     },
     addJugador: function addJugador(jugador) {
         AppData.jugadores.push(jugador);
@@ -47,23 +66,21 @@ module.exports = {
     getSalas: function getSalas() {
         return AppData.salas;
     },
-    findSalaById: function findSalaById(id) {
-        return AppData.salas.find((sala) => {
-            return (sala.id === id);
-        })
-    },
-    isPlayerInSala: function (sala, jugador) {
-        var result = sala.players.find((p) => {
-            return (p.Email === jugador.Email);
-        });
-        return result;
-    },
+    findSalaById: findSalaById,
+    isPlayerInSala: isPlayerInSala,
     //hace un push al array de jugadores de la sala en concreto.
-    asignarJugadorASala(salaId, jugador) {
-        var sala = this.findSalaById(salaId);
-        if (sala && !this.isPlayerInSala(sala, jugador)) {
+    asignarJugadorASala(salaId, jugadorId) {
+        var sala = findSalaById(salaId);
+
+        console.log("asignarJugadorASala: " + jugadorId);
+
+        var jugador = AppData.jugadores.find(x => x.Email === jugadorId);
+
+        if (sala && !isPlayerInSala(sala, jugador)) {
+            jugador.Color = randomColor();
             sala.players.push(jugador);
         }
+
         return sala;
     },
 
@@ -97,8 +114,37 @@ module.exports = {
 
         return result;
 
-       
+    },
+
+    //Jugador en sala
+    jugadorEnSala(idSalas, email) {
+        var salaJuego = AppData.salas.find((s) => {
+            return (s.id == idSalas);
+        });
+
+        var emailJugador = AppData.jugadores.find((j) => {
+            return (j.Email == email);
+        });
+
+
+
+        if (emailJugador !== undefined) {
+            emailJugador.Color = colores[aleatorio()];
+
+            salaJuego.players.push(emailJugador);
+        }
 
     }
 
 };
+
+//Asignar color
+var colores = ["red", "blue", "green", "white", "black"];
+
+function aleatorio(inferior, superior) {
+    numPosibilidades = superior - inferior
+    aleat = Math.random() * numPosibilidades
+    aleat = Math.floor(aleat)
+    return parseInt(inferior) + aleat
+}
+

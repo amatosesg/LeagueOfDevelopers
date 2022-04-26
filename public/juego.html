@@ -1,0 +1,70 @@
+<!DOCTYPE <html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Juego conquistas</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="icon" type="image/x-icon" href="img/fondo.png" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+
+<body>
+    <script>
+        function texto(){
+            var elemento=document.getElementById("titulo");
+            lienzo=elemento.getContext("2d");
+
+            lienzo.shadowColor="rgba(0,0,0,0.5)";
+            lienzo.shadowOffsetX=3;
+            lienzo.shadowOffsetY=3;
+            lienzo.shadowBlur=4;
+            lienzo.font="bold 30px verdana";
+            lienzo.texAlign="start";
+            lienzo.fillText("Cosquista las celdas antes que tu enemigo,", 100, 100);
+            lienzo.fillText("como si quisieras conquistar el continente", 100, 140);
+
+         }
+
+         window.addEventListener("load", texto, false);
+    </script>
+    <script>
+        function comenzar(){
+            var elemento=document.getElementById("lienzo");
+            lienzo=elemento.getContext("2d");
+
+            var imagen=new Image();
+             imagen.src="img/fondo.png";
+
+            imagen.addEventListener("load", function(){
+                lienzo.drawImage(imagen,0,0)}, false);
+        }
+     
+        window.addEventListener("load", comenzar, false);
+
+    </script>
+     
+   
+
+    
+
+    <canvas height="400" width="400"></canvas>
+
+    <canvas id="lienzo" width="500" height="400"></canvas>
+
+    <canvas id="titulo" width="900" height="200"></canvas>
+  
+ 
+
+<!--<script src="/socket.io/socket.io.js"></script>>-->
+    <script src="js/socket.io.min.js"></script>
+    <!-- <script type="text/javascript" src="models/casilla.js"></script>   -->
+    <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="clases/main.js"></script>
+    <script type="text/javascript" src="clases/jugador.js"></script>
+    <script type="text/javascript" src="client.js"></script>
+   
+</body>
+
+</html>    
