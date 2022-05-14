@@ -3,22 +3,49 @@ const randomColor = require('randomcolor');
 
 class AppData {
 
-    static jugadores = [];   
-    
+    static jugadores = [
+        {
+            Name: "Jose",
+            Surname: "Ruiz",
+            Email: "jose@jose.com",
+            Password: "12345",
+            State: "España",
+            City: "Barcelona",
+            Avatar: "Avatar2.png"
+        },
+        {
+            Name: "Jose2",
+            Surname: "Ruiz",
+            Email: "jose2@jose.com",
+            Password: "12345",
+            State: "España",
+            City: "Barcelona",
+            Avatar: "Avatar2.png"
+        },
+        {
+            Name: "Jose3",
+            Surname: "Ruiz",
+            Email: "jose3@jose.com",
+            Password: "12345",
+            State: "España",
+            City: "Barcelona",
+            Avatar: "Avatar3.png"
+        }
+    ];
 
     static salas = [
         {
-            id: "Sala 1",
+            id: "sala1",
             players: []
 
         },
         {
-            id: "Sala 2",
+            id: "sala2",
             players: []
 
         },
         {
-            id: "Sala 3",
+            id: "sala3",
             players: []
 
 
@@ -57,7 +84,7 @@ module.exports = {
         AppData.jugadores.push(jugador);
     },
     login: function login(email, password) {
-        const user = AppData.jugadores.find(x => x.Email == email && x.Password == password);
+        const user = mongoose.model('jugadadorMongodb', JugadorScheme).find(x => x.Email == email && x.Password == password);
 
         return user;
     },
@@ -77,7 +104,7 @@ module.exports = {
         var jugador = AppData.jugadores.find(x => x.Email === jugadorId);
 
         if (sala && !isPlayerInSala(sala, jugador)) {
-            jugador.Color = randomColor();
+            //jugador.Color = randomColor();
             sala.players.push(jugador);
         }
 

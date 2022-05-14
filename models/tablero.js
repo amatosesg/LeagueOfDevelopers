@@ -1,4 +1,4 @@
-class Partida{
+class TableroJuego{
       
     constructor(fila, columna){
         this._fila = fila;

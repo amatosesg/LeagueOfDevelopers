@@ -1,4 +1,4 @@
-const partida = (size) => {
+const createBoard = (size) => {
 
     let board;
 
@@ -121,4 +121,4 @@ const partida = (size) => {
     };
 };
 
-module.exports = partida;
+module.exports = createBoard;

@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "dd90b1a6-9f6d-4008-8079-4d979d740515",
+		"name": "JS Developers",
+		"description": "Bienvenidos, aquí presentamos la API de nuestra aplicación.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Jugadores",
+			"item": [
+				{
+					"name": "GET Jugadores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/jugadores-registrados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"jugadores-registrados"
+							]
+						},
+						"description": "Como podemos ver, nos devuelve el objeto JSON con las datos de los jugadores registrados."
+					},
+					"response": []
+				}
+			],
+			"description": "En esta carpeta se encuentra la ruta para poder ver los jugadores que están registrados en la aplicación."
+		},
+		{
+			"name": "POST Jugadores",
+			"item": [
+				{
+					"name": "POST Jugadores",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "David",
+									"type": "text"
+								},
+								{
+									"key": "Surname",
+									"value": "Lopez",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "david@david.com",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "david",
+									"type": "text"
+								},
+								{
+									"key": "City",
+									"value": "Barcelona",
+									"type": "text"
+								},
+								{
+									"key": "State",
+									"value": "España",
+									"type": "text"
+								},
+								{
+									"key": "Avatar",
+									"value": "Avatar3.png",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/registrar-usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"registrar-usuario"
+							]
+						},
+						"description": "Como podemos ver, nos registra al jugador con los datos del formulario, y nos devuelve el mensaje de que el jugador ha sido registrado correctamente."
+					},
+					"response": []
+				}
+			],
+			"description": "En esta carpeta se encuentra la ruta para poder registrar a los jugadores en la base de datos."
+		},
+		{
+			"name": "GET Jugadores en espera",
+			"item": [
+				{
+					"name": "GET Jugadores en espera",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/jugadores-en-espera",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"jugadores-en-espera"
+							]
+						},
+						"description": "Como podemos ver, esta ruta nos devuelve los jugadores logueados que están en la sala de espera, esperando a seleccionar una sala de juego."
+					},
+					"response": []
+				}
+			],
+			"description": "En esta carpeta encontramos la ruta que nos devuelve los jugadores logueados y que están en espera para acceder a una sala de juego."
+		},
+		{
+			"name": "GET Salas",
+			"item": [
+				{
+					"name": "GET Salas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/salas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"salas"
+							]
+						},
+						"description": "Como podemos ver, esta ruta nos devuelve las salas de juego que tenemos."
+					},
+					"response": []
+				}
+			],
+			"description": "En esta carpeta tenemos la ruta que nos devuelve las salas que tenemos en la base de datos."
+		},
+		{
+			"name": "DELETE Jugadores",
+			"item": [
+				{
+					"name": "DELETE Jugadores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "Con esta ruta nos busca a los jugadores registrados por el email, de tal manera que los podamos eliminar de la base de datos."
+					},
+					"response": []
+				}
+			],
+			"description": "En esta carpeta encontramos la ruta para poder eliminar jugadores registrados en la base de datos."
+		},
+		{
+			"name": "PUT Jugadores",
+			"item": [
+				{
+					"name": "PUT Jugadores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "Con esta ruta encontramos a los jugadores registrados en la base de datos, y podemos modificar alguno de sus campos."
+					},
+					"response": []
+				}
+			],
+			"description": "En esta carpeta encontramos la ruta para poder modificar los datos de los jugadores registrados en la base de datos."
+		}
+	]
+}

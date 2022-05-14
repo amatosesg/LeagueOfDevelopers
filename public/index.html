@@ -2,48 +2,136 @@
 <html lang="es">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Juego conquistas</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-  <link rel="icon" type="image/x-icon" href="img/fondo.png" />
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
-  <link rel="preload" href="public/img/primaryBG.gif" as="image">
-
-
+  <link rel="preload" href="img/primaryBG.gif" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Iniciar Sesión</title>
 </head>
 
 
 
 <body>
-
-  <div class="bg-img__primary container-fluid">
-  <!-- HEADER -->
-  <header class="row justify-content-center">
-    <div class="col-auto mt-3 mb-3">
-        <a href="index.html"><img src="../public/img/logoNoBG.png" alt="logoLoD"></a>
-    </div>
-</header>
-
+  <body>
+    <div class="container-fluid bg-img__primary">
   
-
-
-  <form action="http://localhost:3000/user/login" method="POST" id="userLogin">
-    <div class="mb-3">
-      <label for="inputEmail" class="form-label">Email</label>
-      <input type="text" id="email" name="email" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label for="inputPassword" class="form-label">Password</label>
-      <input type="password" id="password" name="password" class="form-control">
-      <button type="submit" id="button" class="btn btn-primary btn-lg">Sign in</button>
-      <li>
-        <a href="sign_up.html">Sign up</a>
-      </li>
-  </form>
+      <!-- HEADER -->
+      <header class="row justify-content-center">
+          <div class="col-auto mt-3 mb-3">
+              <a href="index.html"><img src="img/logoNoBG-blue-sm.png" alt="logoLoD"></a>
+          </div>
+      </header>
   
-
-</div>
-
+      <div class="row justify-content-center">
+          <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 col-xxl-3h rounded shadow bg-white p-4 pt-2">
+              <h2 class="fw-medium text-center pt-4 mb-4 text-uppercase">Bienvenido</h2>
+  
+              <!-- LOGIN FORM -->
+              <form action="http://localhost:3000/user/login" method="POST" id="userLogin">
+                  <div class="mb-4">
+                      <label for="inputEmail" class="form-label">Correo Electrónico</label>
+                      <input type="text" class="form-control" name="email" placeholder="Email" id="email" required>
+                  </div>
+                  <div class="mb-4">
+                      <label for="inputPassword" class="form-label">Contraseña</label>
+                      <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+                  </div>
+                  <!-- TODO MANTENER SESION INICIADA -->
+                  <div class="mb-4 form-check">
+                      <input type="checkbox" name="connected" class="form-check-input" id="connectedCheck" checked>
+                      <label for="connected" class="form-check-label">Mantener sesión iniciada</label>
+                  </div>
+  
+                  <div class="d-grid justify-content-center">
+                      <button type="submit" id="button" class="btn btn-primary__lod ps-5 pe-5">Iniciar Sesión</button>
+                  </div>
+                  <div class="mt-3 text-center">
+                      <!-- <span><a href="forgot-password.html">¿Has olvidado tu contraseña?</a></span>
+                      <br> -->
+                      <span><a href="sign_up.html">Crear cuenta</a></span>
+                  </div>
+              </form>
+  
+              <!-- LOGIN WITH RRSS -->
+              <div class="container w-100 mt-3">
+                  <div class="row">
+                      <div class="col">
+                          <h5 class="fw-medium text-center text-uppercase d-none d-sm-block">También puedes iniciar sesión con</h5>
+                          <h5 class="fw-medium text-center text-uppercase d-block d-sm-none">Iniciar sesión con</h5>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-12 col-sm">
+                          <button class="btn btn-outline-primary w-100 my-1">
+                              <img src="img/logoFB.png" width="30" alt="">
+                          </button>
+                      </div>
+                      <div class="col-12 col-sm">
+                          <button class="btn btn-outline-danger w-100 my-1">
+                              <img src="img/logoGoogle.png" width="30" alt="">
+                          </button>
+                      </div>
+                      <div class="col-12 col-sm justify-content-center">
+                          <button class="btn btn-outline-dark w-100 my-1">
+                              <img src="img/logoApple.png" width="30" alt="">
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <!-- FOOTER SM TO XXL -->
+      <footer class="row pt-5 m-0 fixed-bottom d-none d-sm-block">
+          <!-- FOOTER MENU -->
+          <div class="row justify-content-center p-0 m-0">
+              <div class="col-auto">
+                  <a class="footer-menu__link" href="#">Asistencia</a>
+              </div>
+              <div class="col-auto">
+                  <a class="footer-menu__link" href="#">Aviso de Privacidad</a>
+              </div>
+              <div class="col-auto">
+                  <a class="footer-menu__link" href="#">Términos de Servicio</a>
+              </div>
+              <div class="col-auto">
+                  <a class="footer-menu__link" href="#">FAQ</a>
+              </div>
+          </div>
+          <div class="row justify-content-center pt-1 m-0">
+              <div class="col text-center footer-menu__text">
+                  <h5>© 2022 JS_Developers. Todos los derechos reservados.</h5>
+              </div> 
+          </div>
+      </footer>
+      <!-- FOOTER XS TO SM -->
+      <footer class="row pt-5 m-0 d-block d-sm-none">
+          <!-- FOOTER MENU -->
+          <div class="row justify-content-center p-0 m-0">
+              <div class="col-auto">
+                  <a class="footer-menu__link" href="#">Asistencia</a>
+              </div>
+              <div class="col-auto">
+                  <a class="footer-menu__link" href="#">Aviso de Privacidad</a>
+              </div>
+              <div class="col-auto">
+                  <a class="footer-menu__link" href="#">Términos de Servicio</a>
+              </div>
+              <div class="col-auto">
+                  <a class="footer-menu__link" href="#">FAQ</a>
+              </div>
+          </div>
+          <div class="row justify-content-center pt-1 m-0">
+              <div class="col text-center footer-menu__text">
+                  <h5>© 2022 JS_Developers. Todos los derechos reservados.</h5>
+              </div> 
+          </div>
+      </footer>
+    </div>
   
   <script src="js/socket.io.min.js"></script>
   <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>

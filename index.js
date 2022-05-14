@@ -2,13 +2,29 @@ const AppData = require("./models/AppData");
 const { addJugador, getJugadores, getSalas, login, jugadorEspera, jugadorEnSala, asignarJugadorASala, getJugadorPorEmail } = require("./models/AppData");
 //
 var express = require("express"),
-  app = express(),
-  bodyParser = require("body-parser");
+    app = express(),
+    bodyParser = require("body-parser");
 const socketio = require('socket.io');
 const randomColor = require('randomcolor');
-const partida = require('./public/partida');
+const createBoard = require('./public/partida');
+
+// Log https requests
+const morgan = require('morgan')
+app.use(morgan('dev'))
+
+
+//MONGODB
+const initDB = require('./mongodb/db');
+const jugadorRouters = require('./rutas_mongodb/jugadorMongodb');
+const salasRouters = require('./rutas_mongodb/salasMongodb');
+
+const controllerJugadores = require('./controllers/jugadorMongodb')
+const controllerSalas = require('./controllers/salasMongodb')
+
 //Sockets
-app.use(express.static(`${__dirname}/../public`));
+app.use(express.static(`${__dirname}/./public`));
+
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,13 +35,17 @@ app.use(bodyParser.json());
 //Ruta principal
 var router = express.Router();
 
+
+app.use(jugadorRouters)
+app.use(salasRouters)
+
 // Configurar cabeceras y cors
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-  next();
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
 });
 
 
@@ -39,72 +59,63 @@ app.use('/', router);
 
 
 //Login jugador
-router.post("/user/login", function (req, res) {
-  var email = req.body.email;
-  var password = req.body.password;
+router.post("/user/login", controllerJugadores.loginData);
 
-  var result = login(email, password);
-
-  res.send(result);
-});
 
 //Rutas jugador
-router.get("/api/dame-usuarios", function (req, res) {
-  const result = getJugadores();
+router.get("/api/dame-usuarios", function(req, res) {
+    const result = getJugadores();
 
-  res.send(result);
+    res.send(result);
 });
 
-router.post("/api/registrar-usuario", function (req, res) {
-  let jugador = req.body;
 
-  addJugador(jugador);
+//Crear jugador
+router.post("/api/registrar-usuario", controllerJugadores.insertData);
 
-  res.send("jugador registrado");
-});
+//Eliminar jugador por email
+router.delete("/api/eliminar-usuario/:email", controllerJugadores.deleteData);
+
+//Actualizar jugador por email
+router.put("/api/actualizar-usuario/:email", controllerJugadores.updateData);
 
 // Jugadores en espera
-router.get("/api/jugadores-en-espera", function (req, res) {
-  var playerExist = jugadorEspera();
+router.get("/api/jugadores-en-espera", controllerJugadores.jugadorEnEspera);
 
-  res.send(playerExist);
-})
+// Jugadores registrados
+router.get("/api/jugadores-registrados", controllerJugadores.getDataJugador);
 
-router.post("/api/jugador-en-sala", function (req, res) {
-  let IdSalas = req.body.IdSalas;
-  let email = req.body.email;
-  console.log(IdSalas);
-  console.log(email);
-  jugadorEnSala(IdSalas, email);
-  const salas = getSalas();
-  res.send(true);
-})
+// Poner jugadores en sala
+router.post("/api/jugador-en-sala", controllerJugadores.jugadorEnSala);
+
 
 //Rutas salas
-router.get("/api/salas", function (req, res) {
+router.get("/api/salas", controllerSalas.getData);
+/*router.get("/api/salas", function (req, res) {
   const result = getSalas();
 
   res.send(result);
+});*/
+
+router.get('/sala/salaId', async(req, res) => {
+    var sala = await findSalaById(req.params.salaId);
+    console.log("sala " + req.params.salaId);
+    console.log(sala.players);
+
+    res.render('juego', { sala: sala });
+
 });
 
-router.get('/sala/salaId', async (req, res) => {
-  var sala = await findSalaById(req.params.salaId);
-  console.log("sala " + req.params.salaId);
-  console.log(sala.players);
+router.post("/api/anadirJugador-sala", controllerJugadores.jugadorEnSala);
+//  function (req, res) {
+//   let salaId = req.body.salaId;
+//   let jugador = req.body.jugador;
+//   console.log(salaId, jugador);
+//   let sala = asignarJugadorASala(salaId, jugador);
 
-  res.render('juego', { sala: sala });
-
-});
-
-router.post("/api/anadirJugador-sala", function (req, res) {
-  let salaId = req.body.salaId;
-  let jugador = req.body.jugador;
-  console.log(salaId, jugador);
-  let sala = asignarJugadorASala(salaId, jugador);
-
-  console.log(sala);
-  res.send(sala);
-});
+//   console.log(sala);
+//   res.send(sala);
+// });
 
 //SOCKET
 app.use(router);
@@ -112,64 +123,63 @@ app.set("port", 3000);
 var server = require('http').createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
-  }
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
 });
-const { clear, getBoard, makeTurn, ganar, celdaContigua, primeraCelda, celdaOcupada } = partida(5);
+const { clear, getBoard, makeTurn, ganar, celdaContigua, primeraCelda, celdaOcupada } = createBoard(5);
 
 //Metodo responsable de las conexiones de los clientes
-io.on('connection', function (socket) {
-  console.log("El cliente se ha conectado");
-  const color = randomColor();
-  socket.emit('board', getBoard());
+io.on('connection', function(socket) {
+    console.log("El cliente se ha conectado");
+    const color = randomColor();
+    socket.emit('board', getBoard());
 
-  socket.on('turn', ({ x, y, email }) => {
-    let pintarPrimera = primeraCelda(color);
-    let jugador = getJugadorPorEmail(email);
+    socket.on('turn', ({ x, y, email }) => {
+        let pintarPrimera = primeraCelda(color);
+        let jugador = getJugadorPorEmail(email);
 
-    //io.emit('turn');
-    if (pintarPrimera) {
-      makeTurn(x, y, color)
+        //io.emit('turn');
+        if (pintarPrimera) {
+            makeTurn(x, y, color)
 
-      console.log(x);
-      console.log(y);
-      console.log(color);
+            console.log(x);
+            console.log(y);
+            console.log(color);
 
-      io.emit('turn', { x, y, color });
-    } else {
+            io.emit('turn', { x, y, color });
+        } else {
 
-      let ocupada = celdaOcupada(x, y);
-      if (!ocupada) {
+            let ocupada = celdaOcupada(x, y);
+            if (!ocupada) {
 
-        let celda = celdaContigua(x, y, color);
+                let celda = celdaContigua(x, y, color);
 
-        if (celda) {
-          makeTurn(x, y, color)
-          io.emit('turn', { x, y, color });
+                if (celda) {
+                    makeTurn(x, y, color)
+                    io.emit('turn', { x, y, color });
+                }
+            }
         }
-      }
-    }
 
-    let resultado = ganar();
+        let resultado = ganar();
 
-    if (resultado.acabado) {
-      io.emit('message', 'Ha ganado el jugador:' + jugador.Name + " " + jugador.Surname);
-      io.emit('message', 'Nueva ronda');
+        if (resultado.acabado) {
+            io.emit('message', 'Ha ganado el jugador:' + jugador.Name + " " + jugador.Surname);
+            io.emit('message', 'Nueva ronda');
 
-      //io.emit('board');
-    }
+            //io.emit('board');
+        }
 
-  });
+    });
 });
 
 
 
-server.listen(3000, function () {
-  console.log("Node server running on http://localhost:3000");
+server.listen(3000, function() {
+    console.log("Node server running on http://localhost:3000");
 });
 
-
-
-
+//MONGODB
+initDB()

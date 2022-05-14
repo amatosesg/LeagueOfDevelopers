@@ -37,21 +37,38 @@ $("#formulario").submit(function (e) {
         Avatar: $("input[type='radio'][name='avatarId']:checked").val()
     };
 
-    //$("input[name=rate]:checked").val()
-    //$("input[type='radio'][name='rate']:checked").val();
+    $.ajax({
+        url: $(this).attr("action"),
+        type: 'POST',
+        dataType: 'json',
+        async:false,
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(usuario),
+        destroy: true,
+        success: function (result) {
+            if (usuario != undefined) {
+                var nombre = document.getElementById('#inputName').value;
+                localStorage.setItem("Nombre", nombre);
+    
+            }
+        }
+     });
 
-    $.post($(this).attr("action"), usuario, function (response) {
+    
+    
+
+   /* $.post($(this).attr("action"), usuario, function (response) {
         console.log(response);
 
         if (usuario != undefined) {
             var nombre = document.getElementById('#inputName').value;
             localStorage.setItem("Nombre", nombre);
-            window.location.href = 'index.html';
+
         }
 
 
 
-    });
+    });*/
     return false;
 });
 
