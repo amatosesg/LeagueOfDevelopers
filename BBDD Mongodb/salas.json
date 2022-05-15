@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "628149b1271bd4ccef5c7dbf"
+  },
+  "name": "Sala Thor",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1652640177927"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1652640177927"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "628149b1271bd4ccef5c7dc0"
+  },
+  "name": "Sala Freya",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1652640177928"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1652640177928"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "628149b1271bd4ccef5c7dc1"
+  },
+  "name": "Sala Loki",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1652640177928"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1652640177928"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "628149dee12fc40ea49561ef"
+  },
+  "name": "Sala Valkyria",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1652640222671"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1652640222671"
+    }
+  }
+}]

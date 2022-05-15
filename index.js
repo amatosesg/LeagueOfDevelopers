@@ -2,8 +2,8 @@ const AppData = require("./models/AppData");
 const { addJugador, getJugadores, getSalas, login, jugadorEspera, jugadorEnSala, asignarJugadorASala, getJugadorPorEmail } = require("./models/AppData");
 //
 var express = require("express"),
-    app = express(),
-    bodyParser = require("body-parser");
+  app = express(),
+  bodyParser = require("body-parser");
 const socketio = require('socket.io');
 const randomColor = require('randomcolor');
 const createBoard = require('./public/partida');
@@ -41,11 +41,11 @@ app.use(salasRouters)
 
 // Configurar cabeceras y cors
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
 });
 
 
@@ -63,31 +63,20 @@ router.post("/user/login", controllerJugadores.loginData);
 
 
 //Rutas jugador
-router.get("/api/dame-usuarios", function(req, res) {
-    const result = getJugadores();
+router.get("/api/dame-usuarios", function (req, res) {
+  const result = getJugadores();
 
-    res.send(result);
+  res.send(result);
 });
 
-
-//Crear jugador
 router.post("/api/registrar-usuario", controllerJugadores.insertData);
-
-//Eliminar jugador por email
-router.delete("/api/eliminar-usuario/:email", controllerJugadores.deleteData);
-
-//Actualizar jugador por email
-router.put("/api/actualizar-usuario/:email", controllerJugadores.updateData);
 
 // Jugadores en espera
 router.get("/api/jugadores-en-espera", controllerJugadores.jugadorEnEspera);
 
-// Jugadores registrados
-router.get("/api/jugadores-registrados", controllerJugadores.getDataJugador);
 
-// Poner jugadores en sala
 router.post("/api/jugador-en-sala", controllerJugadores.jugadorEnSala);
-
+  
 
 //Rutas salas
 router.get("/api/salas", controllerSalas.getData);
@@ -97,12 +86,12 @@ router.get("/api/salas", controllerSalas.getData);
   res.send(result);
 });*/
 
-router.get('/sala/salaId', async(req, res) => {
-    var sala = await findSalaById(req.params.salaId);
-    console.log("sala " + req.params.salaId);
-    console.log(sala.players);
+router.get('/sala/salaId', async (req, res) => {
+  var sala = await findSalaById(req.params.salaId);
+  console.log("sala " + req.params.salaId);
+  console.log(sala.players);
 
-    res.render('juego', { sala: sala });
+  res.render('juego', { sala: sala });
 
 });
 
@@ -123,62 +112,62 @@ app.set("port", 3000);
 var server = require('http').createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"]
-    }
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
 });
 const { clear, getBoard, makeTurn, ganar, celdaContigua, primeraCelda, celdaOcupada } = createBoard(5);
 
 //Metodo responsable de las conexiones de los clientes
-io.on('connection', function(socket) {
-    console.log("El cliente se ha conectado");
-    const color = randomColor();
-    socket.emit('board', getBoard());
+io.on('connection', function (socket) {
+  console.log("El cliente se ha conectado");
+  const color = randomColor();
+  socket.emit('board', getBoard());
 
-    socket.on('turn', ({ x, y, email }) => {
-        let pintarPrimera = primeraCelda(color);
-        let jugador = getJugadorPorEmail(email);
+  socket.on('turn', ({ x, y, email }) => {
+    let pintarPrimera = primeraCelda(color);
+    let jugador = getJugadorPorEmail(email);
 
-        //io.emit('turn');
-        if (pintarPrimera) {
-            makeTurn(x, y, color)
+    //io.emit('turn');
+    if (pintarPrimera) {
+      makeTurn(x, y, color)
 
-            console.log(x);
-            console.log(y);
-            console.log(color);
+      console.log(x);
+      console.log(y);
+      console.log(color);
 
-            io.emit('turn', { x, y, color });
-        } else {
+      io.emit('turn', { x, y, color });
+    } else {
 
-            let ocupada = celdaOcupada(x, y);
-            if (!ocupada) {
+      let ocupada = celdaOcupada(x, y);
+      if (!ocupada) {
 
-                let celda = celdaContigua(x, y, color);
+        let celda = celdaContigua(x, y, color);
 
-                if (celda) {
-                    makeTurn(x, y, color)
-                    io.emit('turn', { x, y, color });
-                }
-            }
+        if (celda) {
+          makeTurn(x, y, color)
+          io.emit('turn', { x, y, color });
         }
+      }
+    }
 
-        let resultado = ganar();
+    let resultado = ganar();
 
-        if (resultado.acabado) {
-            io.emit('message', 'Ha ganado el jugador:' + jugador.Name + " " + jugador.Surname);
-            io.emit('message', 'Nueva ronda');
+    if (resultado.acabado) {
+      io.emit('message', 'Ha ganado el jugador:' + jugador.Name + " " + jugador.Surname);
+      io.emit('message', 'Nueva ronda');
 
-            //io.emit('board');
-        }
+      //io.emit('board');
+    }
 
-    });
+  });
 });
 
 
 
-server.listen(3000, function() {
-    console.log("Node server running on http://localhost:3000");
+server.listen(3000, function () {
+  console.log("Node server running on http://localhost:3000");
 });
 
 //MONGODB

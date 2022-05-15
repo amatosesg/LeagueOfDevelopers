@@ -1,0 +1,47 @@
+[{
+  "_id": {
+    "$oid": "6280d84791e689c4737d74f0"
+  },
+  "Name": "Dilan",
+  "Surname": "García",
+  "Email": "dylanuga@gmail.com",
+  "Password": "1234",
+  "State": "Sevilla",
+  "City": "Constantina ",
+  "Avatar": "Avatar2.png",
+  "Color": null,
+  "IdSala": null,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1652611143200"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1652640199672"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6280d87191e689c4737d74f2"
+  },
+  "Name": "Adria",
+  "Surname": "Matoses",
+  "Email": "amatosesg@gmail.com",
+  "Password": "1234",
+  "State": "Valencia",
+  "City": "Valencia",
+  "Avatar": "Avatar1.png",
+  "Color": null,
+  "IdSala": null,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1652611185153"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1652614677683"
+    }
+  }
+}]

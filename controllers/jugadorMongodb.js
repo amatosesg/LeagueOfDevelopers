@@ -12,7 +12,7 @@ async function dummySalaCreator(sala) {
 
 async function dummyUserCreator(user) {
     await dummySalaCreator({
-        name: 'sala random',
+        name: 'sala Valkyria',
     })
 
     const salasTotal = await salaModel.find()
@@ -24,6 +24,21 @@ async function dummyUserCreator(user) {
         console.error(err)
     }
 }
+
+
+//Creación de sala de juego (solo para pruebas)
+// dummySalaCreator({
+//     name: 'sala Thor',
+// })
+
+// dummySalaCreator({
+//     name: 'sala Freya',
+// })
+
+// dummySalaCreator({
+//     name: 'sala Loki',
+// })
+
 
 // dummyUserCreator({
 //     Name: 'OtherOne',
@@ -62,50 +77,6 @@ exports.insertData = async(req, res) => {
         res.status(500).json({ message: err.message })
     }
 }
-
-//Delete JUGADORES
-exports.deleteData = async(req, res) => {
-    const email_jugador = req.params.email
-
-    try {
-        const userDeleted = await playerModel.findOneAndRemove({ email: email_jugador })
-        if (!userDeleted) return res.status(404).json({ message: 'User not found' })
-        res.status(200).json({ data: userDeleted })
-    } catch (err) {
-        console.error(err)
-        res.status(500).json({ message: err.message })
-    }
-}
-
-//JUGADORES 
-exports.getDataJugador = async(req, res) => {
-    try {
-        const jugador = await playerModel.find()
-
-        res.status(200).json(jugador)
-    } catch (err) {
-        console.error(err)
-        res.status(500).json({ message: err.message })
-    }
-}
-
-
-
-
-//actualizar JUGADORES
-exports.updateData = async(req, res) => {
-    const { body } = req
-
-    try {
-        const userUpdated = await playerModel.findOneAndUpdate({ email: body.email }, body, { new: true })
-        if (!userUpdated) return res.status(404).json({ message: 'User not found' })
-        res.status(200).json({ data: userUpdated })
-    } catch (err) {
-        console.error(err)
-        res.status(500).json({ message: err.message })
-    }
-}
-
 
 //LOGIN JUGADORES
 exports.loginData = async(req, res) => {
